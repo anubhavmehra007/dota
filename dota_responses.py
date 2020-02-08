@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import unquote
 import pickle
-import urllib
+from urllib.parse import quote
 url = "https://dota2.gamepedia.com/"
 def get_hero_list():
     first_hero = '/Abaddon'
@@ -96,7 +96,7 @@ def encode_hero_name(hero):
     if " " in hero:
         hero = hero.split(" ")
         hero ="_".join(hero)
-    hero = urllib.urlencode(hero)
+    hero = quote(hero)
     return hero
 
 def make_data_file():

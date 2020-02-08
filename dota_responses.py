@@ -33,7 +33,7 @@ def prepare_response_from_text(text):
     for test in tests:
         if text.startswith(test):
             text = text.strip(test)
-
+    text = text.strip()
     return text
 
 def get_hero_response(hero):
@@ -81,6 +81,9 @@ def beautify_hero_name(hero):
     if '_' in hero:
         hero = hero.split('_')
         hero = ' '.join(hero)
+    elif '-' in hero:
+        hero = hero.split('-')
+        hero = ' '.join(hero)
     return hero
 
 def make_all_data():
@@ -93,12 +96,18 @@ def make_all_data():
     return dota
 
 def encode_hero_name(hero):
-    hero = hero.title()
-    if " " in hero:
-        hero = hero.split(" ")
-        hero ="_".join(hero)
-    hero = quote(hero)
-    return hero
+    hero = hero.lower()
+    if hero == "anti mage":
+        return "Anti-Mage"
+    else:
+        words = []
+        for word in hero.split():
+            if word not in ['the', 'of']:
+                word = word.capitalize()
+            words.append(word)
+        hero = "_".join(words)
+        hero = quote(hero)
+        return hero
 
 def make_data_file():
     with open('dota.dat', 'wb') as f:

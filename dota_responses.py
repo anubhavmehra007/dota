@@ -93,6 +93,7 @@ def make_all_data():
     return dota
 
 def encode_hero_name(hero):
+    hero = hero.title()
     if " " in hero:
         hero = hero.split(" ")
         hero ="_".join(hero)

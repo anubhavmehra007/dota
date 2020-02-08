@@ -1,3 +1,6 @@
-from dota_responses import encode_hero_name, get_hero_response
+from dota_responses import *
 
-print(get_hero_response(encode_hero_name("Nature's Prophet")))
+name = encode_hero_name("earthshaker")
+response = get_hero_response(name)
+url = return_response_media_url(name, 'Who gave you permission to prance across the earth?')
+download_resonse_mp3(url)

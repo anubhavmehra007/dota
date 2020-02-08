@@ -51,7 +51,7 @@ def get_hero_response(hero):
             
             return responses
         else:
-            raise Exception(f"Error in fetching respose urls for Hero {hero[1:]}")
+            raise Exception(f"Error in fetching respose urls for Hero {hero}")
     except Exception as e:
         print(e)
 

@@ -56,10 +56,18 @@ def reply_to_private_messages(token_object, message_list, last_id):
 
 token_object = get_access_token_object()
 start = time.time()
-last_id = "t4_lwll0e"
+try:
+    f = open("last_id.txt", "r")
+    last_id = f.readline().strip('\n')
+except:
+    last_id = None   
+finally:
+    f.close()
 timeout  = 1
+
 while True:
     try:
+        
         current = time.time()
         if current - start >= token_object['expires_in']:
             token_object = get_access_token_object()
@@ -72,9 +80,11 @@ while True:
             print(f"Replied until id {last_id} ")
         time.sleep(timeout*60)
     except KeyboardInterrupt:
+        with open("last_id.txt","w") as f:
+            f.write(last_id+"\n")
         break
     except Exception as e:
         print(e)
-        break
+        
 
 

@@ -71,6 +71,8 @@ while True:
             last_id = reply_to_private_messages(token_object, message_list, last_id)
             print(f"Replied until id {last_id} ")
         time.sleep(timeout*60)
+    except KeyboardInterrupt:
+        break
     except Exception as e:
         print(e)
         break
